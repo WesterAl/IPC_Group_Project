@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
+    //Albin's test
 
     //Initialize variable
     Chronometer chronometer;
