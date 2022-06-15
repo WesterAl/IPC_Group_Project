@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SwimTraining</string>
+    <string name="start_stop_button">Start Swimming</string>
+</resources>
