@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class MainActivity extends AppCompatActivity {
-    //I had to make a change so github would realize that there is a change
 
     //Initialize variable
     Chronometer chronometer;
