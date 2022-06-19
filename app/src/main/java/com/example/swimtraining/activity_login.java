@@ -1,9 +1,12 @@
 package com.example.swimtraining;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,8 +31,24 @@ public class activity_login extends AppCompatActivity {
             public void onClick(View v) {
                 //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
 
+                String selectedProfile = spinnerProfile.getSelectedItem ().toString();
 
-                Toast.makeText(activity_login.this, "teste", Toast.LENGTH_LONG).show();
+                if(selectedProfile.equals("Student")){
+
+                    Toast.makeText(activity_login.this, selectedProfile, Toast.LENGTH_LONG).show();
+                    //TODO: change the startActivity to your pageActivity if student
+                    //startActivity(new Intent(activity_login.this, TeacherListActivity.class));
+                }
+                else if (selectedProfile.equals("Teacher")){
+
+                    Intent intent = new Intent(activity_login.this, TeacherListActivity.class);
+                    EditText editTextNameProfileLogin = (EditText) findViewById((R.id.name_profile_login));
+                    String nameLogin = editTextNameProfileLogin.getText().toString();
+
+                    intent.putExtra("name_login", nameLogin);
+                    startActivity(intent);
+                }
+
             }
         });
     }
