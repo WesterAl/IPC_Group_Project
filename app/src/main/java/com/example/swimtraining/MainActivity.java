@@ -30,15 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign variable
         chronometer = findViewById(R.id.chronometer);
-        //chronometer.setFormat("Time: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
 
         //textView for lap counter
         TextView lapCounterTextView = (TextView) findViewById(R.id.textViewLapCounter);
-
         lapCounterTextView.setText("0");
-        //textView.setText(0);
-        //String message = editText.getText().toString();
+
     }
 
     //Function to add laps
@@ -57,15 +54,29 @@ public class MainActivity extends AppCompatActivity {
 
     //Function to go to ResultsActivity and send time + laps
     public void callResultsActivity(View view) {
+        //If timer is running -> stop timer and get current time
+        if (running){
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+        }
+
         // Do something in response to button
         Intent intent = new Intent(this, ResultsActivity.class);
 
        //Change pauseOffset to string and add to intent that is sent to ResultsActivity
         String pauseOffsetString = String.valueOf(pauseOffset);
+
         intent.putExtra("keyPauseOffsetString", pauseOffsetString);
+
         String lapCounterString = String.valueOf(lapCounter);
         intent.putExtra("keyLapCounterString", lapCounterString);
         startActivity(intent);
+
+        //Reset lap counter and timer
+        pauseOffset = 0;
+        lapCounter = 0;
+        display(lapCounter);
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
     //Function to start and stop the timer
