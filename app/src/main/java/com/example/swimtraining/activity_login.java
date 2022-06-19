@@ -31,6 +31,9 @@ public class activity_login extends AppCompatActivity {
             public void onClick(View v) {
                 //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
 
+
+                EditText editTextNameProfileLogin = (EditText) findViewById((R.id.name_profile_login));
+                String nameLogin = editTextNameProfileLogin.getText().toString();
                 String selectedProfile = spinnerProfile.getSelectedItem ().toString();
 
                 if(selectedProfile.equals("Student")){
@@ -42,9 +45,6 @@ public class activity_login extends AppCompatActivity {
                 else if (selectedProfile.equals("Teacher")){
 
                     Intent intent = new Intent(activity_login.this, TeacherListActivity.class);
-                    EditText editTextNameProfileLogin = (EditText) findViewById((R.id.name_profile_login));
-                    String nameLogin = editTextNameProfileLogin.getText().toString();
-
                     intent.putExtra("name_login", nameLogin);
                     startActivity(intent);
                 }
