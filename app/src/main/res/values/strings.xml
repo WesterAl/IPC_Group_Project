@@ -4,4 +4,20 @@
     <string name="class_button">Class</string>
     <string name="alone_button">Alone</string>
     <string name="results_button">Results</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="login">"Login"</string>
+    <string-array name="profile">
+        <item>Teacher</item>
+        <item>Student</item>
+    </string-array>
+    <string name="go_to_results">Results</string>
+
 </resources>

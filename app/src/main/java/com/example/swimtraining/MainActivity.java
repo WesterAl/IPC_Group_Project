@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private long pauseOffset;
     private boolean running;
 
+    private String str = "test string";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +34,19 @@ public class MainActivity extends AppCompatActivity {
         chronometer.setBase(SystemClock.elapsedRealtime());
 
     }
+    //-----------------
+    /** Called when the user taps the Send button */
+    public void callResultsActivity(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putExtra("test", str);
+        startActivity(intent);
+        //Toast.makeText(this, "callConstrainToGuidelineActivity", Toast.LENGTH_SHORT).show();
 
+    }
+    //------------------
+
+    //Function to start and stop the timer
     public void startStopTime(View view) {
         if (!running) {
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
