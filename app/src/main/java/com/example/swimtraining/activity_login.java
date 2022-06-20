@@ -40,7 +40,7 @@ public class activity_login extends AppCompatActivity {
 
                     Toast.makeText(activity_login.this, selectedProfile, Toast.LENGTH_LONG).show();
                     //TODO: change the startActivity to your pageActivity if student
-                    //startActivity(new Intent(activity_login.this, TeacherListActivity.class));
+                    startActivity(new Intent(activity_login.this, Menu.class));
                 }
                 else if (selectedProfile.equals("Teacher")){
 
