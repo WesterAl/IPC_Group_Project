@@ -1,8 +1,10 @@
 package com.example.swimtraining;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ public class TeacherNewClassActivity extends AppCompatActivity {
         Button btnConfirmedAddClass = (Button)findViewById(R.id.button_date);
 
         btnConfirmedAddClass.setOnClickListener(new View.OnClickListener() {
+            //@RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
 
@@ -38,6 +41,8 @@ public class TeacherNewClassActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), chosenDate, Toast.LENGTH_LONG).show();
                 TeacherListActivity.updateClass(chosenDate);
 
+
+                //gTeacherListActivity.updateStudentsInClass(chosenDate, "Leticia", 5.8);
             }
         });
 

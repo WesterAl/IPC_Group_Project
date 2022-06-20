@@ -1,8 +1,10 @@
 package com.example.swimtraining;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -136,18 +138,25 @@ public class TeacherListActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void updateStudentsInClass(String date, String student, double time){
-        int indexClass = listDataHeader.indexOf(date);
+        //int indexClass = listDataHeader.indexOf(date);
 
-        List<Swimmer> students = listDataChild.get(date);
         Swimmer s = new Swimmer();
         s.name = student;
         s.time = time;
 
-        students.add(s);
 
-        listDataChild.remove(listDataHeader.get(indexClass)); //remove to insert again
-        listDataChild.put(listDataHeader.get(indexClass), students); //insert updated list
+        List<Swimmer> students = listDataChild.get(date);
+        if(students == null){
+            students = new ArrayList<Swimmer>();
+            students.add(s);
+            listDataChild.put(date, students);
+        }
+        else {
+            students.add(s);
+            listDataChild.replace(date, students); //insert updated list
+        }
 
 
     }
