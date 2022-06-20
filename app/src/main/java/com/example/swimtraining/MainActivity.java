@@ -63,4 +63,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /** Called when the user taps the Send button */
+    public void goToResults(View view) {
+        Intent intent = new Intent(this, ResultsActivity.class);
+        startActivity(intent);
+    }
+
 }

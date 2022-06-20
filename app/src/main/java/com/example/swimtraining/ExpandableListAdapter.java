@@ -1,5 +1,6 @@
 package com.example.swimtraining;
-
+import java.util.HashMap;
+import java.util.List;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -8,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import java.util.HashMap;
-import java.util.List;
-
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
+
     private Context _context;
-    private List<String> _listDataHeader; // header titles
-    // child data in format of header title, child title
+    //Названия заголовков
+    private List<String> _listDataHeader;
+    //Данные для элементов подпунктов:
     private HashMap<String, List<String>> _listDataChild;
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
@@ -39,14 +39,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-
-        TeacherListActivity.Swimmer childObject = (TeacherListActivity.Swimmer) getChild(groupPosition, childPosition);
         final String childText = (String) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.teacher_list_item, null);
+            convertView = infalInflater.inflate(R.layout.list_item, null);
+            //convertView = infalInflater.inflate(R.layout.teacher_list_item, null);
+
         }
 
         TextView txtListChild = (TextView) convertView
@@ -84,7 +84,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.teacher_list_group, null);
+            convertView = infalInflater.inflate(R.layout.list_group, null);
+            //convertView = infalInflater.inflate(R.layout.teacher_list_group, null);
         }
 
         TextView lblListHeader = (TextView) convertView
