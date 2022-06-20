@@ -6,6 +6,7 @@ import androidx.annotation.RequiresApi;
 import java.util.Date;
 
 public class ResultsData {
+    String name;
     Date startTime;
     Date endTime;
     long generalTime;
@@ -14,8 +15,9 @@ public class ResultsData {
     double speed;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public ResultsData(Date startTime, Date endTime,
+    public ResultsData(String name, Date startTime, Date endTime,
                        int laps, int distance){
+        this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
         this.generalTime = endTime.getTime() - startTime.getTime();

@@ -26,6 +26,7 @@ public class TimerActivity extends AppCompatActivity {
     private int lapCounter = 0;
 
     Button startStopButton;
+    private ResultsData res;
 
 
     @Override
@@ -79,15 +80,6 @@ public class TimerActivity extends AppCompatActivity {
 
 
         Bundle extras = getIntent().getExtras();
-        String userNameLogin = extras.getString("userName_Login");
-
-        String name = "startTime" + " - " + "endTime";
-        intent.putExtra("title", name);
-        intent.putExtra("student", "name: " + userNameLogin);
-        intent.putExtra("laps", "Lap: " + String.valueOf(lapCounter));
-        intent.putExtra("distance", "Distance: 10");
-        intent.putExtra("speed", "Speed: 1 km/h");
-        intent.putExtra("generalTime", "General Time: 45");
 
        //Change pauseOffset to string and add to intent that is sent to ResultsActivity
         String pauseOffsetString = String.valueOf(pauseOffset);
@@ -106,12 +98,16 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     //Function to start and stop the timer
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void startStopTime(View view) {
+        Date startTime = new Date();
+        Date endTime = new Date();
         if (!running) {
             startStopButton.setText(R.string.start_stop_button_Stop);
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
             chronometer.start();
             running = true;
+            startTime = Calendar.getInstance().getTime();
 
         }
         else if (running) {
@@ -119,6 +115,10 @@ public class TimerActivity extends AppCompatActivity {
             chronometer.stop();
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
             running = false;
+            endTime = Calendar.getInstance().getTime();
+            Bundle extras = getIntent().getExtras();
+            res = new ResultsData(extras.getString("userName_Login"), startTime, endTime, lapCounter, 50*lapCounter);
+            GlobalVariables.resultsData.add(res);
         }
     }
 
