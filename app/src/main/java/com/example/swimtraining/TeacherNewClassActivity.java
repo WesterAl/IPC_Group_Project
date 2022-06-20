@@ -38,8 +38,6 @@ public class TeacherNewClassActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), chosenDate, Toast.LENGTH_LONG).show();
                 TeacherListActivity.updateClass(chosenDate);
 
-
-                TeacherListActivity.updateStudentsInClass(chosenDate, "Leticia", 5.8);
             }
         });
 
