@@ -2,6 +2,7 @@ package com.example.swimtraining;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
             running = false;
         }
+    }
+
+    /** Called when the user taps the Send button */
+    public void goToResults(View view) {
+        Intent intent = new Intent(this, ResultsActivity.class);
+        startActivity(intent);
     }
 
 }

@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SwimTraining">
         <activity
-            android:name=".Test"
+            android:name=".ResultsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Menu"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
