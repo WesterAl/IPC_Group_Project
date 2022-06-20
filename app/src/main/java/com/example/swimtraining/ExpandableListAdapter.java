@@ -15,10 +15,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader; // header titles
     // child data in format of header title, child title
-    private HashMap<String, List<TeacherListActivity.Swimmer>> _listDataChild;
+    private HashMap<String, List<String>> _listDataChild;
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader,
-                                 HashMap<String, List<TeacherListActivity.Swimmer>> listChildData) {
+                                 HashMap<String, List<String>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
@@ -41,8 +41,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 
         TeacherListActivity.Swimmer childObject = (TeacherListActivity.Swimmer) getChild(groupPosition, childPosition);
-        final String childText = (String) childObject.name;
-        //final String childText = (String) getChild(groupPosition, childPosition);
+        final String childText = (String) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
