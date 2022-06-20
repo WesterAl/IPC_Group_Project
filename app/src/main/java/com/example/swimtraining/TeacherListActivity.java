@@ -3,6 +3,7 @@ package com.example.swimtraining;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -56,11 +57,12 @@ public class TeacherListActivity extends AppCompatActivity {
             }
         });
 
-        expandableList(R.id.lvExp, listDataHeader, listDataChild, listAdapter, expListView);
+        Context atualContext = getApplicationContext();
+        expandableList(R.id.lvExp, listDataHeader, listDataChild, listAdapter, expListView, atualContext);
     }
 
 
-    public void expandableList(int id, List<String> ListDataHeaderParam, HashMap<String, List<String>> ListDataChildParam, ExpandableListAdapter listAdapterParam, ExpandableListView expListViewParam){
+    public void expandableList(int id, List<String> ListDataHeaderParam, HashMap<String, List<String>> ListDataChildParam, ExpandableListAdapter listAdapterParam, ExpandableListView expListViewParam, Context context){
         // get the listview
         expListViewParam = (ExpandableListView) findViewById(id);
         // preparing list data
@@ -77,7 +79,7 @@ public class TeacherListActivity extends AppCompatActivity {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
                                         int groupPosition, long id) {
-                // Toast.makeText(getApplicationContext(),
+                // Toast.makeText(context,
                 // "Group Clicked " + listDataHeader.get(groupPosition),
                 // Toast.LENGTH_SHORT).show();
                 return false;
@@ -89,7 +91,7 @@ public class TeacherListActivity extends AppCompatActivity {
 
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
+                Toast.makeText(context,
                         ListDataHeaderParam.get(groupPosition) + " Expanded",
                         Toast.LENGTH_SHORT).show();
             }
@@ -100,7 +102,7 @@ public class TeacherListActivity extends AppCompatActivity {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getApplicationContext(),
+                Toast.makeText(context,
                         ListDataHeaderParam.get(groupPosition) + " Collapsed",
                         Toast.LENGTH_SHORT).show();
 
@@ -115,7 +117,7 @@ public class TeacherListActivity extends AppCompatActivity {
                                         int groupPosition, int childPosition, long id) {
                 // TODO Auto-generated method stub
                 Toast.makeText(
-                        getApplicationContext(),
+                        context,
                         ListDataHeaderParam.get(groupPosition)
                                 + " : "
                                 + ListDataChildParam.get(
@@ -137,7 +139,6 @@ public class TeacherListActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void updateStudentsInClass(String date, String student){
-
         String s = new String(student);
 
         List<String> students = listDataChild.get(date);
