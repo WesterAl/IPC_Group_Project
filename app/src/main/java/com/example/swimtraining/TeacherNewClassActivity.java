@@ -27,6 +27,7 @@ public class TeacherNewClassActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // display the selected date by using a toast
                 chosenDate = year  + "/" + month + "/" + dayOfMonth;
+
             }
         });
 
@@ -42,6 +43,8 @@ public class TeacherNewClassActivity extends AppCompatActivity {
                 TeacherListActivity.updateClass(chosenDate);
 
                 TeacherListActivity.updateStudentsInClass(chosenDate, "Leticia");
+                TeacherListActivity.updateStudentsInClass(chosenDate, "Time: 42 sec");
+                TeacherListActivity.updateStudentsInClass(chosenDate, "Laps: 1");
             }
         });
 

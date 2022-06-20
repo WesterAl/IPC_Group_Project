@@ -31,16 +31,14 @@ public class activity_login extends AppCompatActivity {
             public void onClick(View v) {
                 //startActivity(new Intent(MainActivity.this, MyOtherActivity.class));
 
-
                 EditText editTextNameProfileLogin = (EditText) findViewById((R.id.name_profile_login));
                 String nameLogin = editTextNameProfileLogin.getText().toString();
                 String selectedProfile = spinnerProfile.getSelectedItem ().toString();
 
                 if(selectedProfile.equals("Student")){
-
-                    Toast.makeText(activity_login.this, selectedProfile, Toast.LENGTH_LONG).show();
-                    //TODO: change the startActivity to your pageActivity if student
-                    startActivity(new Intent(activity_login.this, Menu.class));
+                    Intent intent = new Intent(activity_login.this, Menu.class);
+                    intent.putExtra("userName_Login", nameLogin);
+                    startActivity(intent);
                 }
                 else if (selectedProfile.equals("Teacher")){
 

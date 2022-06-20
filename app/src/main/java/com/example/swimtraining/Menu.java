@@ -16,12 +16,17 @@ public class Menu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        Button btn = (Button)findViewById(R.id.alone_button);
+        Bundle extras = getIntent().getExtras();
+        String userName = extras.getString("userName_Login");
 
+        Button btn = (Button)findViewById(R.id.alone_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, TimerActivity.class));
+
+                Intent intent = new Intent(Menu.this, TimerActivity.class);
+                intent.putExtra("userName_Login", userName);
+                startActivity(intent);
             }
         });
     }

@@ -1,8 +1,13 @@
 package com.example.swimtraining;
+import java.util.Calendar;
+import java.util.Date;
 
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -27,6 +32,7 @@ public class TimerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
+
 
         //Assign variable
         chronometer = findViewById(R.id.chronometer);
@@ -57,6 +63,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     //Function to go to ResultsActivity and send time + laps
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void callResultsActivity(View view) {
         //If timer is running -> stop timer and get current time
         if (running){
@@ -65,7 +72,22 @@ public class TimerActivity extends AppCompatActivity {
         }
 
         // Do something in response to button
+
+
         Intent intent = new Intent(this, ResultsActivity.class);
+
+
+
+        Bundle extras = getIntent().getExtras();
+        String userNameLogin = extras.getString("userName_Login");
+
+        String name = "startTime" + " - " + "endTime";
+        intent.putExtra("title", name);
+        intent.putExtra("student", "name: " + userNameLogin);
+        intent.putExtra("laps", "Lap: " + String.valueOf(lapCounter));
+        intent.putExtra("distance", "Distance: 10");
+        intent.putExtra("speed", "Speed: 1 km/h");
+        intent.putExtra("generalTime", "General Time: 45");
 
        //Change pauseOffset to string and add to intent that is sent to ResultsActivity
         String pauseOffsetString = String.valueOf(pauseOffset);
