@@ -2,17 +2,15 @@ package com.example.swimtraining;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class TimerActivity extends AppCompatActivity {
 
     //Initialize variable
     Chronometer chronometer;
@@ -22,11 +20,13 @@ public class MainActivity extends AppCompatActivity {
 
     private int lapCounter = 0;
 
+    Button startStopButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_timer);
 
         //Assign variable
         chronometer = findViewById(R.id.chronometer);
@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         //textView for lap counter
         TextView lapCounterTextView = (TextView) findViewById(R.id.textViewLapCounter);
         lapCounterTextView.setText("0");
+
+        startStopButton = findViewById(R.id.startStopButton);
+        startStopButton.setText(R.string.start_stop_button_Start);
+
 
     }
 
@@ -82,12 +86,14 @@ public class MainActivity extends AppCompatActivity {
     //Function to start and stop the timer
     public void startStopTime(View view) {
         if (!running) {
+            startStopButton.setText(R.string.start_stop_button_Stop);
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
             chronometer.start();
             running = true;
 
         }
         else if (running) {
+            startStopButton.setText(R.string.start_stop_button_Start);
             chronometer.stop();
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
             running = false;
