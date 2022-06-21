@@ -128,8 +128,10 @@ public class TeacherListActivity extends AppCompatActivity {
             }
         }
         else {
-            students.add(student);
-            listDataChild.replace(date, students);
+            if(!students.contains(student)) {
+                students.add(student);
+                listDataChild.replace(date, students);
+            }
         }
     }
 
