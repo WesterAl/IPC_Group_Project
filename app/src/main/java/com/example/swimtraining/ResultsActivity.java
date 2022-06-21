@@ -36,22 +36,6 @@ public class ResultsActivity extends AppCompatActivity {
 
         //Подготавливаем список данных:
         prepareListData();
-        //Bundle extras = getIntent().getExtras();
-        //String title = extras.getString("title");
-        //String student = extras.getString("student");
-        //String laps = extras.getString("laps");
-        //String distance = extras.getString("distance");
-        //String speed = extras.getString("speed");
-        //String generalTime = extras.getString("generalTime");
-
-
-        //updateResult(title);
-        //updateItemResult(title, student);
-        //updateItemResult(title, laps);
-        //updateItemResult(title, distance);
-        //updateItemResult(title, speed);
-        //updateItemResult(title, generalTime);
-
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
         //Настраиваем listAdapter:
@@ -68,7 +52,7 @@ public class ResultsActivity extends AppCompatActivity {
         list.add("Time: " + GlobalVariables.resultsData.get(i).generalTime + " sec");
         list.add("Laps: " + GlobalVariables.resultsData.get(i).laps);
         list.add("Distance: " + GlobalVariables.resultsData.get(i).distance + " m");
-        list.add("Speed: " + GlobalVariables.resultsData.get(i).speed + " M/s");
+        list.add("Speed: " + GlobalVariables.resultsData.get(i).speed + " m/s");
         return list;
 
     }
@@ -81,30 +65,6 @@ public class ResultsActivity extends AppCompatActivity {
             String head = GlobalVariables.resultsData.get(i).startTime.toString() + " - " + GlobalVariables.resultsData.get(i).endTime.toString();
             listDataHeader.add(head);
             listDataChild.put(listDataHeader.get(i), prepareData(i));
-        }
-    }
-
-
-    /*
-     * Methods to update Class and update Students into class
-     */
-    public static void updateResult(String dateBetween){
-        listDataHeader.add(dateBetween);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public static void updateItemResult(String date, String value){
-        String s = new String(value);
-
-        List<String> values = listDataChild.get(date);
-        if(values == null){
-            values = new ArrayList<String>();
-            values.add(s);
-            listDataChild.put(date, values);
-        }
-        else {
-            values.add(s);
-            listDataChild.replace(date, values);
         }
     }
 }
