@@ -1,12 +1,17 @@
 package com.example.swimtraining;
 import java.util.Calendar;
 import java.util.Date;
+
+
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -43,6 +48,12 @@ public class TimerActivity extends AppCompatActivity {
 
         startStopButton = findViewById(R.id.startStopButton);
         startStopButton.setText(R.string.start_stop_button_Start);
+
+
+        //Inside onCreate
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     //Function to add laps
@@ -65,6 +76,9 @@ public class TimerActivity extends AppCompatActivity {
             chronometer.stop();
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
         }
+
+
+
 
         Bundle extras = getIntent().getExtras();
         Intent intent = new Intent(TimerActivity.this, ResultsActivity.class);
@@ -122,5 +136,19 @@ public class TimerActivity extends AppCompatActivity {
             chronometer.setBase(SystemClock.elapsedRealtime());
         }
     }
+
+
+    //Return button/Arrow
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 }

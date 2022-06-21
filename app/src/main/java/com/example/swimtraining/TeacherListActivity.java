@@ -1,12 +1,15 @@
 package com.example.swimtraining;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -52,6 +55,10 @@ public class TeacherListActivity extends AppCompatActivity {
 
         Context atualContext = getApplicationContext();
         expandableList(R.id.listTeacher, GlobalVariables.classDates, listDataChild, listAdapter, expListView, atualContext);
+
+        //Return button/Arrow
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -124,6 +131,17 @@ public class TeacherListActivity extends AppCompatActivity {
             students.add(student);
             listDataChild.replace(date, students);
         }
+    }
+
+    //Return button/Arrow
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
