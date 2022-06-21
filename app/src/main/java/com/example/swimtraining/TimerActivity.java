@@ -6,6 +6,7 @@ import java.util.Date;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -71,7 +72,6 @@ public class TimerActivity extends AppCompatActivity {
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
         }
 
-        // Do something in response to button
 
 
         Intent intent = new Intent(this, ResultsActivity.class);

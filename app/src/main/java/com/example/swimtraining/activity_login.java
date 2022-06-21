@@ -1,4 +1,5 @@
 package com.example.swimtraining;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,8 @@ public class activity_login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         Spinner spinnerProfile = findViewById(R.id.spinner_profile_login);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
