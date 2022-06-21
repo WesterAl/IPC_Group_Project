@@ -88,7 +88,7 @@ public class TimerActivity extends AppCompatActivity {
         intent.putExtra("userName_Login", student);
 
         //Insert the type of filter
-        Boolean typeClass = extras.getBoolean("type_alone");
+        String typeClass = extras.getString("type_alone");
         intent.putExtra("type_alone", typeClass);
 
         String nameClass = extras.getString("nameClass");
@@ -124,9 +124,9 @@ public class TimerActivity extends AppCompatActivity {
             endTime = Calendar.getInstance().getTime();
             Bundle extras = getIntent().getExtras();
             String userNameLogin = extras.getString("userName_Login");
-            Boolean typeClass = extras.getBoolean("type_alone");
+            String typeClass = extras.getString("type_alone");
             String nameClass = extras.getString("nameClass");
-            res = new ResultsData(userNameLogin, startTime, endTime, lapCounter, 50*lapCounter, typeClass, nameClass);
+            res = new ResultsData(userNameLogin, startTime, endTime, lapCounter, 50*lapCounter, Boolean.parseBoolean(typeClass), nameClass);
             GlobalVariables.resultsData.add(res);
 
             //Reset lap counter and timer

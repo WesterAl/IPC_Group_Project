@@ -97,7 +97,7 @@ public class TeacherListActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(TeacherListActivity.this, ResultsActivity.class);
 
-                intent.putExtra("type_alone", false);
+                intent.putExtra("type_alone", "false");
                 intent.putExtra("userName_Login",  ListDataChildParam.get(
                         ListDataHeaderParam.get(groupPosition)).get(
                         childPosition));

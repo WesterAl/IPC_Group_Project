@@ -53,6 +53,7 @@ public class StudentClassListActivity extends AppCompatActivity {
                 Intent i = new Intent(StudentClassListActivity.this, TimerActivity.class);
                 i.putExtra("userName_Login", student);
                 i.putExtra("nameClass", GlobalVariables.classDates.get(position).toString());
+                i.putExtra("type_alone", "false");
                 startActivity(i);
             }
         });

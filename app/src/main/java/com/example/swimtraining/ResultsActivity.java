@@ -37,7 +37,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String student = extras.getString("userName_Login");
-        Boolean alone = extras.getBoolean("type_alone");
+        String alone = extras.getString("type_alone");
         String nameClass = extras.getString("nameClass");
 
         //Связываемся с нашим ExpandableListView:
@@ -70,7 +70,9 @@ public class ResultsActivity extends AppCompatActivity {
 
     }
 
-    private void prepareListData(String student, Boolean alone, String nameClass) {
+    private void prepareListData(String student, String alone, String nameClass) {
+
+
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
@@ -82,22 +84,19 @@ public class ResultsActivity extends AppCompatActivity {
                     listDataHeader.add(head);
                     listDataChild.put(head, prepareData(i));
                 }
-                else if(GlobalVariables.resultsData.get(i).alone == alone){
+                else if(GlobalVariables.resultsData.get(i).alone == Boolean.parseBoolean(alone)){
                     if(nameClass == null){
                         String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
                         listDataHeader.add(head);
                         listDataChild.put(head, prepareData(i));
                     }
-                    else if(!alone && nameClass.equals(GlobalVariables.resultsData.get(i).nameClass)){
+                    else if(alone.equals("false") && nameClass.equals(GlobalVariables.resultsData.get(i).nameClass)){
                         String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
                         listDataHeader.add(head);
                         listDataChild.put(head, prepareData(i));
                     }
-
                 }
-
             }
-
         }
     }
 

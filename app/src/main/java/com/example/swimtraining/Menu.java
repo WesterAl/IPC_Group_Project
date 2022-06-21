@@ -29,7 +29,7 @@ public class Menu extends AppCompatActivity {
 
                 Intent intent = new Intent(Menu.this, TimerActivity.class);
                 intent.putExtra("userName_Login", userName);
-                intent.putExtra("type_alone", true);
+                intent.putExtra("type_alone", "true");
                 startActivity(intent);
             }
         });
@@ -41,7 +41,7 @@ public class Menu extends AppCompatActivity {
 
                 Intent intent = new Intent(Menu.this, StudentClassListActivity.class);
                 intent.putExtra("userName_Login", userName);
-                intent.putExtra("type_alone", false);
+                intent.putExtra("type_alone", "false");
                 startActivity(intent);
             }
         });
@@ -51,7 +51,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Menu.this, StudentClassListActivity.class);
+                Intent intent = new Intent(Menu.this, ResultsActivity.class);
                 intent.putExtra("userName_Login", userName);
                 startActivity(intent);
             }
