@@ -44,6 +44,17 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        Button btnResults = (Button)findViewById(R.id.results_button);
+        btnResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Menu.this, ResultsActivity.class);
+                intent.putExtra("userName_Login", userName);
+                startActivity(intent);
+            }
+        });
+
         //Return button/Arrow
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);

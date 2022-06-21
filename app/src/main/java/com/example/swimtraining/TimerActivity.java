@@ -129,7 +129,7 @@ public class TimerActivity extends AppCompatActivity {
         }
     }
 
-    /*
+
     //Return button/Arrow
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -141,6 +141,6 @@ public class TimerActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-     */
+
 
 }

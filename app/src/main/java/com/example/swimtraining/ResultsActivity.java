@@ -1,6 +1,8 @@
 package com.example.swimtraining;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
@@ -10,6 +12,7 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
@@ -41,6 +44,10 @@ public class ResultsActivity extends AppCompatActivity {
 
         //Настраиваем listAdapter:
         expListView.setAdapter(listAdapter);
+
+        //Return button/Arrow
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     /*
@@ -68,4 +75,16 @@ public class ResultsActivity extends AppCompatActivity {
             listDataChild.put(listDataHeader.get(i), prepareData(i));
         }
     }
+
+    //Return button/Arrow
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
