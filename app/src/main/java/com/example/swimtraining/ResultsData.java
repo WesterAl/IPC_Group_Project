@@ -13,10 +13,12 @@ public class ResultsData {
     int laps;
     int distance;
     double speed;
+    boolean alone = true;
+    String nameClass;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public ResultsData(String name, Date startTime, Date endTime,
-                       int laps, int distance){
+                       int laps, int distance, boolean alone, String nameClass){
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -24,6 +26,8 @@ public class ResultsData {
         this.laps = laps;
         this.distance = distance;
         this.speed = distance / generalTime;
+        this.alone = alone;
+        this.nameClass = nameClass;
 
 
 

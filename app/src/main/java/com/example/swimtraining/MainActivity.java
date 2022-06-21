@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Assign variable
         chronometer = findViewById(R.id.chronometer);
-        //chronometer.setFormat("Time: %s");
         chronometer.setBase(SystemClock.elapsedRealtime());
 
     }
@@ -43,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ResultsActivity.class);
         intent.putExtra("test", str);
         startActivity(intent);
-        //Toast.makeText(this, "callConstrainToGuidelineActivity", Toast.LENGTH_SHORT).show();
-
     }
     //------------------
 

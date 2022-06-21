@@ -26,6 +26,7 @@ public class Menu extends AppCompatActivity {
 
                 Intent intent = new Intent(Menu.this, TimerActivity.class);
                 intent.putExtra("userName_Login", userName);
+                intent.putExtra("type_alone", true);
                 startActivity(intent);
             }
         });
@@ -37,8 +38,21 @@ public class Menu extends AppCompatActivity {
 
                 Intent intent = new Intent(Menu.this, StudentClassListActivity.class);
                 intent.putExtra("userName_Login", userName);
+                intent.putExtra("type_alone", false);
                 startActivity(intent);
             }
         });
+
+        Button btnResults = (Button)findViewById(R.id.results_button);
+        btnResults.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Menu.this, StudentClassListActivity.class);
+                intent.putExtra("userName_Login", userName);
+                startActivity(intent);
+            }
+        });
+
     }
 }

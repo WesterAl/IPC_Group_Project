@@ -46,8 +46,10 @@ public class StudentClassListActivity extends AppCompatActivity {
                 Bundle extras = getIntent().getExtras();
                 String student = extras.getString("userName_Login");
                 TeacherListActivity.updateStudentsInClass(GlobalVariables.classDates.get(position).toString(), student);
+
                 Intent i = new Intent(StudentClassListActivity.this, TimerActivity.class);
                 i.putExtra("userName_Login", student);
+                i.putExtra("nameClass", GlobalVariables.classDates.get(position).toString());
                 startActivity(i);
             }
         });

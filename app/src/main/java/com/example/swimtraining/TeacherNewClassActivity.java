@@ -1,8 +1,6 @@
 package com.example.swimtraining;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,20 +17,15 @@ public class TeacherNewClassActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_new_class);
 
-        CalendarView simpleCalendarView = (CalendarView) findViewById(R.id.simpleCalendarView); // get the reference of CalendarView
-        long selectedDate = simpleCalendarView.getDate(); // get selected date in milliseconds
-
+        CalendarView simpleCalendarView = (CalendarView) findViewById(R.id.simpleCalendarView);
         simpleCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                // display the selected date by using a toast
                 chosenDate = year  + "/" + month + "/" + dayOfMonth;
-
             }
         });
 
         Button btnConfirmedAddClass = (Button)findViewById(R.id.button_date);
-
         btnConfirmedAddClass.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -44,6 +37,5 @@ public class TeacherNewClassActivity extends AppCompatActivity {
             }
         });
 
-                //TeacherListActivity.prepareListData();
     }
 }

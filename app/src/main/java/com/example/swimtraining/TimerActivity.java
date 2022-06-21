@@ -1,11 +1,8 @@
 package com.example.swimtraining;
 import java.util.Calendar;
 import java.util.Date;
-
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -36,7 +33,6 @@ public class TimerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
 
-
         //Assign variable
         chronometer = findViewById(R.id.chronometer);
         chronometer.setBase(SystemClock.elapsedRealtime());
@@ -47,21 +43,17 @@ public class TimerActivity extends AppCompatActivity {
 
         startStopButton = findViewById(R.id.startStopButton);
         startStopButton.setText(R.string.start_stop_button_Start);
-
-
     }
 
     //Function to add laps
     public void addLap(View view){
         lapCounter = lapCounter + 1;
         display(lapCounter);
-        //System.out.println(lapCounter);0
     }
 
     //Update textView with lapCounter
     private void display(int lapCounter) {
         TextView lapCounterTextView = (TextView) findViewById(R.id.textViewLapCounter);
-        //Application stops if -> setText(lapCounter)
         lapCounterTextView.setText("" + lapCounter);
     }
 
@@ -74,24 +66,28 @@ public class TimerActivity extends AppCompatActivity {
             pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
         }
 
-        // Do something in response to button
-
-
-
         Bundle extras = getIntent().getExtras();
         Intent intent = new Intent(TimerActivity.this, ResultsActivity.class);
+
+        //Insert the username profile
         String student = extras.getString("userName_Login");
         intent.putExtra("userName_Login", student);
 
+        //Insert the type of filter
+        Boolean typeClass = extras.getBoolean("type_alone");
+        intent.putExtra("type_alone", typeClass);
+
+        String nameClass = extras.getString("nameClass");
+        intent.putExtra("nameClass", nameClass);
 
 
-       //Change pauseOffset to string and add to intent that is sent to ResultsActivity
+        //Change pauseOffset to string and add to intent that is sent to ResultsActivity
         String pauseOffsetString = String.valueOf(pauseOffset);
-
         intent.putExtra("keyPauseOffsetString", pauseOffsetString);
 
         String lapCounterString = String.valueOf(lapCounter);
         intent.putExtra("keyLapCounterString", lapCounterString);
+
         startActivity(intent);
 
     }
@@ -105,7 +101,6 @@ public class TimerActivity extends AppCompatActivity {
             chronometer.start();
             running = true;
             startTime = Calendar.getInstance().getTime();
-
         }
         else if (running) {
             startStopButton.setText(R.string.start_stop_button_Start);
@@ -114,7 +109,10 @@ public class TimerActivity extends AppCompatActivity {
             running = false;
             endTime = Calendar.getInstance().getTime();
             Bundle extras = getIntent().getExtras();
-            res = new ResultsData(extras.getString("userName_Login"), startTime, endTime, lapCounter, 50*lapCounter);
+            String userNameLogin = extras.getString("userName_Login");
+            Boolean typeClass = extras.getBoolean("type_alone");
+            String nameClass = extras.getString("nameClass");
+            res = new ResultsData(userNameLogin, startTime, endTime, lapCounter, 50*lapCounter, typeClass, nameClass);
             GlobalVariables.resultsData.add(res);
 
             //Reset lap counter and timer

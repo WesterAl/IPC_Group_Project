@@ -34,12 +34,14 @@ public class ResultsActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         String student = extras.getString("userName_Login");
+        Boolean alone = extras.getBoolean("type_alone");
+        String nameClass = extras.getString("nameClass");
 
         //Связываемся с нашим ExpandableListView:
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
         //Подготавливаем список данных:
-        prepareListData(student);
+        prepareListData(student, alone, nameClass);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
         //Настраиваем listAdapter:
@@ -61,18 +63,32 @@ public class ResultsActivity extends AppCompatActivity {
 
     }
 
-    private void prepareListData(String student) {
+    private void prepareListData(String student, Boolean alone, String nameClass) {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
-        int count = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         for (int i = 0; i < GlobalVariables.resultsData.size(); i++){
 
             if(GlobalVariables.resultsData.get(i).name.equals(student)){
-                String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
-                listDataHeader.add(head);
-                listDataChild.put(head, prepareData(i));
-                //listDataChild.put(listDataHeader.get(i), prepareData(i));
+                if(alone == null){
+                    String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
+                    listDataHeader.add(head);
+                    listDataChild.put(head, prepareData(i));
+                }
+                else if(GlobalVariables.resultsData.get(i).alone == alone){
+                    if(nameClass == null){
+                        String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
+                        listDataHeader.add(head);
+                        listDataChild.put(head, prepareData(i));
+                    }
+                    else if(!alone && nameClass.equals(GlobalVariables.resultsData.get(i).nameClass)){
+                        String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
+                        listDataHeader.add(head);
+                        listDataChild.put(head, prepareData(i));
+                    }
+
+                }
+
             }
 
         }
