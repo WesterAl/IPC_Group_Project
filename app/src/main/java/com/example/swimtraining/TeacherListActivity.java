@@ -33,8 +33,8 @@ public class TeacherListActivity extends AppCompatActivity {
         public double time;
     }
 
-    ExpandableListAdapter listAdapter;
-    ExpandableListView expListView;
+    static ExpandableListAdapter listAdapter;
+    static ExpandableListView expListView;
     static List<String> listDataHeader = new ArrayList<String>();
     static HashMap<String, List<String>> listDataChild = new HashMap<String, List<String>>();
     FloatingActionButton btnAddClass;
@@ -58,7 +58,7 @@ public class TeacherListActivity extends AppCompatActivity {
         });
 
         Context atualContext = getApplicationContext();
-        expandableList(R.id.lvExp, listDataHeader, listDataChild, listAdapter, expListView, atualContext);
+        expandableList(R.id.listTeacher, GlobalVariables.classDates, listDataChild, listAdapter, expListView, atualContext);
     }
 
 
@@ -68,7 +68,7 @@ public class TeacherListActivity extends AppCompatActivity {
         // preparing list data
         //prepareListData();
 
-        listAdapterParam = new com.example.swimtraining.ExpandableListAdapter(this, ListDataHeaderParam, ListDataChildParam);
+        listAdapterParam = new com.example.swimtraining.ExpandableListAdapter(context, ListDataHeaderParam, ListDataChildParam);
 
         // setting list adapter
         expListViewParam.setAdapter(listAdapterParam);
@@ -86,36 +86,13 @@ public class TeacherListActivity extends AppCompatActivity {
             }
         });
 
-        // Listview Group expanded listener
-        expListViewParam.setOnGroupExpandListener(new OnGroupExpandListener() {
-
-            @Override
-            public void onGroupExpand(int groupPosition) {
-                Toast.makeText(context,
-                        ListDataHeaderParam.get(groupPosition) + " Expanded",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        // Listview Group collasped listener
-        expListViewParam.setOnGroupCollapseListener(new OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(context,
-                        ListDataHeaderParam.get(groupPosition) + " Collapsed",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
         // Listview on child click listener
         expListViewParam.setOnChildClickListener(new OnChildClickListener() {
 
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                // TODO Auto-generated method stub
+
                 Toast.makeText(
                         context,
                         ListDataHeaderParam.get(groupPosition)
@@ -124,6 +101,9 @@ public class TeacherListActivity extends AppCompatActivity {
                                 ListDataHeaderParam.get(groupPosition)).get(
                                 childPosition), Toast.LENGTH_SHORT)
                         .show();
+
+                Intent intent = new Intent(TeacherListActivity.this, ResultsActivity.class);
+                startActivity(intent);
                 return false;
             }
         });

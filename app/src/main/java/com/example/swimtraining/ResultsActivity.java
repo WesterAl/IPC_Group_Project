@@ -32,11 +32,14 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
+        Bundle extras = getIntent().getExtras();
+        String student = extras.getString("userName_Login");
+
         //Связываемся с нашим ExpandableListView:
         expListView = (ExpandableListView) findViewById(R.id.lvExp);
 
         //Подготавливаем список данных:
-        prepareListData();
+        prepareListData(student);
         listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
 
         //Настраиваем listAdapter:
@@ -58,14 +61,20 @@ public class ResultsActivity extends AppCompatActivity {
 
     }
 
-    private void prepareListData() {
+    private void prepareListData(String student) {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
+        int count = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         for (int i = 0; i < GlobalVariables.resultsData.size(); i++){
-            String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
-            listDataHeader.add(head);
-            listDataChild.put(listDataHeader.get(i), prepareData(i));
+
+            if(GlobalVariables.resultsData.get(i).name.equals(student)){
+                String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
+                listDataHeader.add(head);
+                listDataChild.put(head, prepareData(i));
+                //listDataChild.put(listDataHeader.get(i), prepareData(i));
+            }
+
         }
     }
 }
