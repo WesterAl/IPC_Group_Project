@@ -28,17 +28,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class TeacherListActivity extends AppCompatActivity {
 
-    public static class Swimmer {
-        public String name;
-        public double time;
-    }
-
     static ExpandableListAdapter listAdapter;
     static ExpandableListView expListView;
     static List<String> listDataHeader = new ArrayList<String>();
     static HashMap<String, List<String>> listDataChild = new HashMap<String, List<String>>();
     FloatingActionButton btnAddClass;
-    Button btnDate;
 
 
 
@@ -53,7 +47,6 @@ public class TeacherListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(TeacherListActivity.this, TeacherNewClassActivity.class));
-
             }
         });
 
@@ -63,11 +56,7 @@ public class TeacherListActivity extends AppCompatActivity {
 
 
     public void expandableList(int id, List<String> ListDataHeaderParam, HashMap<String, List<String>> ListDataChildParam, ExpandableListAdapter listAdapterParam, ExpandableListView expListViewParam, Context context){
-        // get the listview
         expListViewParam = (ExpandableListView) findViewById(id);
-        // preparing list data
-        //prepareListData();
-
         listAdapterParam = new com.example.swimtraining.ExpandableListAdapter(context, ListDataHeaderParam, ListDataChildParam);
 
         // setting list adapter
@@ -100,6 +89,12 @@ public class TeacherListActivity extends AppCompatActivity {
                         .show();
 
                 Intent intent = new Intent(TeacherListActivity.this, ResultsActivity.class);
+
+                intent.putExtra("type_alone", false);
+                intent.putExtra("userName_Login",  ListDataChildParam.get(
+                        ListDataHeaderParam.get(groupPosition)).get(
+                        childPosition));
+                intent.putExtra("nameClass", ListDataHeaderParam.get(groupPosition));
                 startActivity(intent);
                 return false;
             }
@@ -116,16 +111,17 @@ public class TeacherListActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void updateStudentsInClass(String date, String student){
-        String s = new String(student);
-
         List<String> students = listDataChild.get(date);
         if(students == null){
             students = new ArrayList<String>();
-            students.add(s);
-            listDataChild.put(date, students);
+
+            if(!students.contains(student)){
+                students.add(student);
+                listDataChild.put(date, students);
+            }
         }
         else {
-            students.add(s);
+            students.add(student);
             listDataChild.replace(date, students);
         }
     }
