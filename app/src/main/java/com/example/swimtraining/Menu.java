@@ -19,8 +19,19 @@ public class Menu extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String userName = extras.getString("userName_Login");
 
-        Button btn = (Button)findViewById(R.id.alone_button);
-        btn.setOnClickListener(new View.OnClickListener() {
+        Button btnAlone = (Button)findViewById(R.id.alone_button);
+        btnAlone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Menu.this, TimerActivity.class);
+                intent.putExtra("userName_Login", userName);
+                startActivity(intent);
+            }
+        });
+
+        Button btnClass = (Button)findViewById(R.id.class_button);
+        btnClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

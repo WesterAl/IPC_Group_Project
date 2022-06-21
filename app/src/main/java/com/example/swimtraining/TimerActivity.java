@@ -27,6 +27,8 @@ public class TimerActivity extends AppCompatActivity {
 
     Button startStopButton;
     private ResultsData res;
+    private Date startTime = new Date();
+    private Date endTime = new Date();
 
 
     @Override
@@ -90,18 +92,11 @@ public class TimerActivity extends AppCompatActivity {
         intent.putExtra("keyLapCounterString", lapCounterString);
         startActivity(intent);
 
-        //Reset lap counter and timer
-        pauseOffset = 0;
-        lapCounter = 0;
-        display(lapCounter);
-        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
     //Function to start and stop the timer
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void startStopTime(View view) {
-        Date startTime = new Date();
-        Date endTime = new Date();
         if (!running) {
             startStopButton.setText(R.string.start_stop_button_Stop);
             chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
@@ -119,6 +114,12 @@ public class TimerActivity extends AppCompatActivity {
             Bundle extras = getIntent().getExtras();
             res = new ResultsData(extras.getString("userName_Login"), startTime, endTime, lapCounter, 50*lapCounter);
             GlobalVariables.resultsData.add(res);
+
+            //Reset lap counter and timer
+            pauseOffset = 0;
+            lapCounter = 0;
+            display(lapCounter);
+            chronometer.setBase(SystemClock.elapsedRealtime());
         }
     }
 

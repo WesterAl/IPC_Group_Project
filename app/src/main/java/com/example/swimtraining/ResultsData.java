@@ -9,7 +9,7 @@ public class ResultsData {
     String name;
     Date startTime;
     Date endTime;
-    long generalTime;
+    float generalTime;
     int laps;
     int distance;
     double speed;
@@ -20,7 +20,7 @@ public class ResultsData {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.generalTime = endTime.getTime() - startTime.getTime();
+        this.generalTime = (endTime.getTime() - startTime.getTime())/1000;
         this.laps = laps;
         this.distance = distance;
         this.speed = distance / generalTime;

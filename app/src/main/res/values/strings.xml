@@ -19,8 +19,8 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login">"Login"</string>
     <string-array name="profile">
-        <item>Teacher</item>
         <item>Student</item>
+        <item>Teacher</item>
     </string-array>
     <string name="go_to_results">Results</string>
 

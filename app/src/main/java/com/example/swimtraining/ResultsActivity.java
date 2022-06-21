@@ -3,6 +3,7 @@ package com.example.swimtraining;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -60,9 +61,9 @@ public class ResultsActivity extends AppCompatActivity {
     private void prepareListData() {
         listDataHeader = new ArrayList<String>();
         listDataChild = new HashMap<String, List<String>>();
-
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
         for (int i = 0; i < GlobalVariables.resultsData.size(); i++){
-            String head = GlobalVariables.resultsData.get(i).startTime.toString() + " - " + GlobalVariables.resultsData.get(i).endTime.toString();
+            String head = sdf.format(GlobalVariables.resultsData.get(i).startTime) + " - " + sdf.format(GlobalVariables.resultsData.get(i).endTime);
             listDataHeader.add(head);
             listDataChild.put(listDataHeader.get(i), prepareData(i));
         }
