@@ -37,14 +37,10 @@ public class TeacherNewClassActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-
+                GlobalVariables.classDates.add(chosenDate);
                 startActivity(new Intent(TeacherNewClassActivity.this, TeacherListActivity.class));
                 Toast.makeText(getApplicationContext(), chosenDate, Toast.LENGTH_LONG).show();
                 TeacherListActivity.updateClass(chosenDate);
-
-                TeacherListActivity.updateStudentsInClass(chosenDate, "Leticia");
-                TeacherListActivity.updateStudentsInClass(chosenDate, "Time: 42 sec");
-                TeacherListActivity.updateStudentsInClass(chosenDate, "Laps: 1");
             }
         });
 

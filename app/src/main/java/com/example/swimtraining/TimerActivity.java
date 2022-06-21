@@ -83,11 +83,13 @@ public class TimerActivity extends AppCompatActivity {
 
 
 
-        Intent intent = new Intent(this, ResultsActivity.class);
-
-
 
         Bundle extras = getIntent().getExtras();
+        Intent intent = new Intent(TimerActivity.this, ResultsActivity.class);
+        String student = extras.getString("userName_Login");
+        intent.putExtra("userName_Login", student);
+
+
 
        //Change pauseOffset to string and add to intent that is sent to ResultsActivity
         String pauseOffsetString = String.valueOf(pauseOffset);

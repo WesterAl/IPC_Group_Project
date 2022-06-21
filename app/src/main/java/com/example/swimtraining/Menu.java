@@ -38,7 +38,7 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Menu.this, TimerActivity.class);
+                Intent intent = new Intent(Menu.this, StudentClassListActivity.class);
                 intent.putExtra("userName_Login", userName);
                 startActivity(intent);
             }
